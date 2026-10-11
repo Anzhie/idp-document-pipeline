@@ -167,10 +167,14 @@ class SpreadsheetExtractor(BaseExtractor):
         if not val_str:
             return 0.0
             
-        # Replace commas with dots (for European formats like 1.234,56 or 120,00)
-        # If both dot and comma are present (e.g., 1,234.56), remove commas.
-        if ',' in val_str and '.' in val_str:
-            val_str = val_str.replace(',', '')
+        # Handle European (1.234,56) and American (1,234.56) number formats correctly
+        if '.' in val_str and ',' in val_str:
+            if val_str.find('.') < val_str.find(','):
+                # Format 1.234,56 (dot as thousand separator, comma as decimal separator)
+                val_str = val_str.replace('.', '').replace(',', '.')
+            else:
+                # Format 1,234.56 (comma as thousand separator, dot as decimal separator)
+                val_str = val_str.replace(',', '')
         elif ',' in val_str:
             val_str = val_str.replace(',', '.')
             

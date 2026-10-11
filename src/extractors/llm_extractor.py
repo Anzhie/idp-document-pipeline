@@ -1,10 +1,8 @@
-import os
 from typing import Any, cast
 
 from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_groq import ChatGroq
-from pydantic import SecretStr
+from langchain_ollama import ChatOllama
 
 from src.extractors.base import BaseExtractor
 from src.schemas import ProcessingResult
@@ -19,14 +17,14 @@ Rules:
 1. Extract document level details:
    - document_number: Document identifier (e.g., INV-2026-001, PO-2026-701, CN-9041, CP-2026-55, PO-SE-8812, PO-JP-3304, PO-IT-9921).
    - document_type: "invoice", "purchase_order", or "delivery_note".
-   - customer_raw: Raw legal entity name of the supplier/vendor or customer/buyer mentioned on the document (e.g., "Penguin Random House", "Simon & Schuster", "HarperCollins Publishers", "Hachette Book Group").
-   - tax_amount: Extracted tax, VAT, or HST amount if explicitly specified on the document (e.g., VAT, Tax 8%, HST 13%). Leave null if not present.
+   - customer_raw: Raw legal entity name of the supplier/vendor or customer/buyer mentioned on the document.
+   - tax_amount: Extracted tax, VAT, or HST amount if explicitly specified on the document. Leave null if not present.
    - shipping_amount: Extracted shipping, freight, or handling fee if present. Leave null if not present.
    - total_amount: Final Grand Total / Total Due / Order Total specified in the header/footer.
 
 2. Extract all line items into the items list:
    - item_number: Part number, SKU, or ISBN if present.
-   - raw_description: Original line item text (e.g., "Harper Lee. To Kill a Mockingbird").
+   - raw_description: Original line item text.
    - title: Parsed book title.
    - author: Parsed author name.
    - quantity: Item quantity as float.
@@ -41,25 +39,20 @@ Rules:
 
 class LLMExtractor(BaseExtractor):
     """
-    Handles LLM-based fallback extraction from raw document text
-    using LangChain and Pydantic schemas via Groq API.
+    Handles local LLM-based fallback extraction from raw document text
+    using LangChain and Ollama (ensuring 100% data privacy).
     """
 
     def __init__(
         self,
-        model_name: str = "qwen/qwen3.8-27b",
+        model_name: str = "qwen2.5",  
         temperature: float = 0.0,
-        api_key: str | None = None,
+        base_url: str = "http://localhost:11434",
     ) -> None:
-        raw_key = api_key or os.getenv("GROQ_API_KEY")
-        secret_key = SecretStr(raw_key) if raw_key else None
-
-        self.llm = ChatGroq(
+        self.llm = ChatOllama(
             model=model_name,
             temperature=temperature,
-            api_key=secret_key,
-            max_tokens=1024,
-            max_retries=3,
+            base_url=base_url,
         ).with_structured_output(ProcessingResult)
 
         self.prompt = ChatPromptTemplate.from_messages(
