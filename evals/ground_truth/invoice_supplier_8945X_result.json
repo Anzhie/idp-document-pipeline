@@ -1,0 +1,51 @@
+{
+  "document_number": "CN-9041",
+  "document_type": "invoice",
+  "customer_raw": "HarperCollins Publishers, Broadway 195, New York, USA",
+  "customer_matched": "HarperCollins Publishers",
+  "customer_id": "SM-10002",
+  "items": [
+    {
+      "item_number": "BK-2023",
+      "isbn": "978-0062457714",
+      "raw_description": "Mark Manson - The Subtle Art of Not Giving a F*ck",
+      "title": "The Subtle Art of Not Giving a F*ck",
+      "author": "Mark Manson",
+      "matched_description": "The Subtle Art of Not Giving a F*ck Mark Manson",
+      "quantity": 2.0,
+      "unit_price": 11.2,
+      "total_price": 22.4,
+      "match_confidence": 0.985
+    },
+    {
+      "item_number": "BK-2014",
+      "isbn": "978-0060850524",
+      "raw_description": "Aldous Huxley - Aldous Huxley",
+      "title": "Brave New World",
+      "author": "Aldous Huxley",
+      "matched_description": "Brave New World Aldous Huxley",
+      "quantity": 1.0,
+      "unit_price": 6.0,
+      "total_price": 6.0,
+      "match_confidence": 0.950
+    },
+    {
+      "item_number": "BK-2010",
+      "isbn": "978-0062315007",
+      "raw_description": "Yuval Noah Harari - Sapiens: A Brief History of Humankind",
+      "title": "Sapiens: A Brief History of Humankind",
+      "author": "Yuval Noah Harari",
+      "matched_description": "Sapiens: A Brief History of Humankind Yuval Noah Harari",
+      "quantity": 1.0,
+      "unit_price": 13.5,
+      "total_price": 13.5,
+      "match_confidence": 0.990
+    }
+  ],
+  "tax_amount": 7.96,
+  "shipping_amount": null,
+  "total_amount": 49.86,
+  "confidence": 0.985,
+  "needs_review": false,
+  "review_reasons": []
+}

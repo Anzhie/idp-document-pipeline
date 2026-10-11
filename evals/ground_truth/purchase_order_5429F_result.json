@@ -1,0 +1,27 @@
+{
+  "document_number": "PO-SE-8812",
+  "document_type": "purchase_order",
+  "customer_raw": "Macmillan Publishers, Broadway 120, New York, USA",
+  "customer_matched": "Macmillan Publishers",
+  "customer_id": "SM-10005",
+  "items": [
+    {
+      "item_number": "BK-2015",
+      "isbn": "978-0525559474",
+      "raw_description": "Matt Haig. The Midnight Library",
+      "title": "The Midnight Library",
+      "author": "Matt Haig",
+      "matched_description": "The Midnight Library Matt Haig",
+      "quantity": 5.0,
+      "unit_price": 10.2,
+      "total_price": 51.0,
+      "match_confidence": 0.9836
+    }
+  ],
+  "tax_amount": null,
+  "shipping_amount": 120.0,
+  "total_amount": 171.0,
+  "confidence": 0.9918,
+  "needs_review": false,
+  "review_reasons": []
+}

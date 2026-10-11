@@ -1,0 +1,51 @@
+{
+  "document_number": "INV-2026-001",
+  "document_type": "invoice",
+  "customer_raw": "Penguin Random House, New York, USA",
+  "customer_matched": "Penguin Random House",
+  "customer_id": "SM-10001",
+  "items": [
+    {
+      "item_number": "BK-2001",
+      "isbn": "978-0143127741",
+      "raw_description": "Harper Lee. To Kill a Mockingbird",
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "matched_description": "To Kill a Mockingbird Harper Lee",
+      "quantity": 5.0,
+      "unit_price": 6.5,
+      "total_price": 32.5,
+      "match_confidence": 0.9846
+    },
+    {
+      "item_number": "BK-2020",
+      "isbn": "978-0375831003",
+      "raw_description": "Markus Zusak. The Book Thief",
+      "title": "The Book Thief",
+      "author": "Markus Zusak",
+      "matched_description": "The Book Thief Markus Zusak",
+      "quantity": 10.0,
+      "unit_price": 7.0,
+      "total_price": 70.0,
+      "match_confidence": 0.9818
+    },
+    {
+      "item_number": "BK-2002",
+      "isbn": "978-0451524935",
+      "raw_description": "George Orwell. 1984",
+      "title": "1984",
+      "author": "George Orwell",
+      "matched_description": "1984 George Orwell",
+      "quantity": 5.0,
+      "unit_price": 5.2,
+      "total_price": 26.0,
+      "match_confidence": 0.973
+    }
+  ],
+  "tax_amount": 10.28,
+  "shipping_amount": null,
+  "total_amount": 138.78,
+  "confidence": 0.9849,
+  "needs_review": false,
+  "review_reasons": []
+}

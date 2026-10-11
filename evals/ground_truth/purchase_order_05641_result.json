@@ -1,0 +1,51 @@
+{
+  "document_number": "PO-IT-9921",
+  "document_type": "purchase_order",
+  "customer_raw": "Penguin Random House, Broadway 1745, New York, USA",
+  "customer_matched": "Penguin Random House",
+  "customer_id": "SM-10001",
+  "items": [
+    {
+      "item_number": "BK-2017",
+      "isbn": "978-0385490818",
+      "raw_description": "Margaret Atwood / The Handmaid's Tale",
+      "title": "The Handmaid's Tale",
+      "author": "Margaret Atwood",
+      "matched_description": "The Handmaid's Tale Margaret Atwood",
+      "quantity": 10.0,
+      "unit_price": 6.8,
+      "total_price": 68.0,
+      "match_confidence": 1.0
+    },
+    {
+      "item_number": "BK-2021",
+      "isbn": "978-0553293357",
+      "raw_description": "Isaac Asimov / Foundation",
+      "title": "Foundation",
+      "author": "Isaac Asimov",
+      "matched_description": "Foundation Isaac Asimov",
+      "quantity": 5.0,
+      "unit_price": 5.9,
+      "total_price": 29.5,
+      "match_confidence": 1.0
+    },
+    {
+      "item_number": "BK-2011",
+      "isbn": "978-0735211292",
+      "raw_description": "James Clear / Atomic Habits",
+      "title": "Atomic Habits",
+      "author": "James Clear",
+      "matched_description": "Atomic Habits James Clear",
+      "quantity": 5.0,
+      "unit_price": 11.0,
+      "total_price": 55.0,
+      "match_confidence": 1.0
+    }
+  ],
+  "tax_amount": null,
+  "shipping_amount": 19.0,
+  "total_amount": 171.5,
+  "confidence": 1.0,
+  "needs_review": false,
+  "review_reasons": []
+}
