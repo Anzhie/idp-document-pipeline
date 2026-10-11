@@ -6,7 +6,7 @@ from src.schemas import ExtractedItem, ProcessingResult
 
 def test_extract_empty_text() -> None:
     """Tests that empty or whitespace text returns a default ProcessingResult without calling the LLM."""
-    extractor = LLMExtractor(api_key="mock-key")
+    extractor = LLMExtractor()
     result = extractor.extract("   ")
 
     assert result.customer_raw == "UNKNOWN"
@@ -15,9 +15,9 @@ def test_extract_empty_text() -> None:
     assert result.items == []
 
 
-@patch("src.extractors.llm_extractor.ChatGroq")
-def test_extract_success_mocked(mock_chat_groq: MagicMock) -> None:
-    """Tests successful data extraction flow with a mocked LLM chain."""
+@patch("src.extractors.llm_extractor.ChatOllama")
+def test_extract_success_mocked(mock_chat_ollama: MagicMock) -> None:
+    """Tests successful data extraction flow with a mocked local LLM chain (zero network requests)."""
     expected_result = ProcessingResult(
         document_number="PO-2026-8891",
         customer_raw="ClearLine Hygiene GmbH",
@@ -32,10 +32,10 @@ def test_extract_success_mocked(mock_chat_groq: MagicMock) -> None:
         needs_review=False,
     )
 
-    # Initialize extractor with a mock API key
-    extractor = LLMExtractor(api_key="mock-key")
+    # Initialize extractor (uses ChatOllama locally)
+    extractor = LLMExtractor()
 
-    # Mock the LangChain execution chain
+    # Mock the LangChain execution chain completely to prevent actual model invocation
     extractor.chain = MagicMock()
     extractor.chain.invoke.return_value = expected_result
 
