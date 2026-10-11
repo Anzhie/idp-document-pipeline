@@ -145,6 +145,32 @@ A document is flagged for manual human review (`needs_review: true`) if any of t
 
 ---
 
+## 📊 Evaluation & Test Harness
+
+To ensure reliability and measure extraction performance, the project includes an automated evaluation framework (`evals/evaluate.py`) that compares pipeline JSON outputs against a curated **Golden Dataset** (`evals/ground_truth/`).
+
+### Evaluated Metrics
+- **Document Number Precision**: Validates correct extraction of document identifiers.
+- **Customer ID Matching (Entity Resolution)**: Measures accuracy of fuzzy matching against Master Data customers.
+- **Total Amount Accuracy**: Verifies financial totals within a defined tolerance.
+- **Line Items Average Accuracy**: Checks item SKU and quantity extraction across document rows.
+- **HITL Routing Accuracy**: Evaluates the correctness of the `needs_review` flag, explicitly tracking:
+  - 🚨 **False Positives (Over-review)**: Valid documents unnecessarily routed to human review.
+  - 🔥 **False Negatives (Critical Bugs)**: Flawed documents incorrectly slipping past automation.
+
+### Running Evaluation
+Place your annotated ground truth JSONs into `evals/ground_truth/` and run the evaluation script:
+```bash
+python evals/evaluate.py
+```
+
+### Sample Evaluation Report
+*Here is a sample execution of the evaluation harness on the test dataset:*
+
+![Evaluation Report](assets/eval_report.png)
+
+---
+
 ## Production Considerations & Scalability
 * **Scalability**: Can be packaged into Docker containers and deployed to cloud queues for asynchronous worker nodes.
 * **Rate Limit / Throttling**: The main pipeline incorporates execution delays (`time.sleep(3)`) to maintain stability.
